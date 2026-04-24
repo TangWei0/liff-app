@@ -8,11 +8,14 @@
 async function main() {
   try {
     document.body.innerHTML = "開始";
-
     await liff.init({ liffId: "2009873872-wrcf23zq" });
-
     document.body.innerHTML = "初期化OK";
-
+    
+    if (!liff.isInClient()) {
+      document.body.innerHTML = "LINEから開いてください";
+      return;
+    }
+    
     if (!liff.isLoggedIn()) {
       document.body.innerHTML = "ログイン中...";
       liff.login();
