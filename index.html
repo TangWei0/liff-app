@@ -7,17 +7,17 @@
 <script>
 async function main() {
   try {
-    document.body.innerHTML = "開始";
+    document.body.innerHTML += "開始";
     await liff.init({ liffId: "2009873872-wrcf23zq" });
-    document.body.innerHTML = "初期化OK";
+    document.body.innerHTML += "初期化OK";
     
     if (!liff.isInClient()) {
-      document.body.innerHTML = "LINEから開いてください";
+      document.body.innerHTML += "LINEから開いてください";
       return;
     }
     
     if (!liff.isLoggedIn()) {
-      document.body.innerHTML = "ログイン中...";
+      document.body.innerHTML += "ログイン中...";
       liff.login();
       return;
     }
@@ -25,7 +25,7 @@ async function main() {
     const profile = await liff.getProfile();
     const userId = profile.userId;
 
-    document.body.innerHTML = "UserID取得OK<br>" + userId;
+    document.body.innerHTML += "UserID取得OK<br>" + userId;
     
     const gasUrl = "https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec";
     // ① 事前チェック
