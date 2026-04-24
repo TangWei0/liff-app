@@ -25,6 +25,11 @@ async function main() {
     const profile = await liff.getProfile();
     const userId = profile.userId;
 
+    if (!userId) {
+      document.body.innerHTML += "<br>UserID取得失敗";
+      return;
+    }
+    
     document.body.innerHTML += "UserID取得OK<br>" + userId;
     
     const gasUrl = "https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec";
