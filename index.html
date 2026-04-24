@@ -26,9 +26,23 @@ async function main() {
     const userId = profile.userId;
 
     document.body.innerHTML = "UserID取得OK<br>" + userId;
+    
+    const gasUrl = "https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec";
+    // ① 事前チェック
+    const checkRes = await fetch(gasUrl + "?userId=" + userId);
+    const status = await checkRes.text();
+    document.body.innerHTML += "<br>チェック：" + status;
+
+    // ② 分岐
+    if (status === "EXISTS") {
+      document.body.innerHTML += "<br>既に登録済み";
+      return;
+    }
+    
+    // ③ 未登録だけ送信
     document.body.innerHTML += "<br>送信開始";
     
-    await fetch("https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec", {
+    await fetch(gasUrl, {
       method: "POST",
       mode: "no-cors",   // ←追加
       headers: { "Content-Type": "application/json"},
