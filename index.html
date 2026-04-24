@@ -27,15 +27,14 @@ async function main() {
 
     document.body.innerHTML = "UserID取得OK<br>" + userId;
 
-    await fetch("https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec", {
+    
+    await fetch("https://script.google.com/macros/s/AKfycbwYOXKOJuSZXigNtF-DHHnhDtneytW-A-G8YXD1IRyYTsDph0Q7ZShCSNZwdrVN0otN/exec", {
       method: "POST",
       mode: "no-cors",   // ←追加
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ userId })
-    });
-
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify({ userId })});
+    
+      document.body.innerHTML += "<br>送信完了";
   } catch (e) {
     document.body.innerHTML = "エラー<br>" + e;
   }
