@@ -26,7 +26,7 @@ async function main() {
     const userId = profile.userId;
 
     document.body.innerHTML = "UserID取得OK<br>" + userId;
-
+    document.body.innerHTML += "<br>送信開始";
     
     await fetch("https://script.google.com/macros/s/AKfycbwYOXKOJuSZXigNtF-DHHnhDtneytW-A-G8YXD1IRyYTsDph0Q7ZShCSNZwdrVN0otN/exec", {
       method: "POST",
