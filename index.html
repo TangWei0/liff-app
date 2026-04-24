@@ -29,6 +29,7 @@ async function main() {
 
     await fetch("https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec", {
       method: "POST",
+      mode: "no-cors",   // ←追加
       headers: {
         "Content-Type": "application/json"
       },
