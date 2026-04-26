@@ -36,7 +36,7 @@ async function main() {
     // ① 事前チェック
     const checkRes = await fetch(gasUrl + "?userId=" + userId);
     const data = await checkRes.json();   // ←変更
-    document.body.innerHTML += "<br>チェック：" + status;
+    document.body.innerHTML += "<br>チェック：" + JSON.stringify(data);
 
     // ② 分岐
     if (data.status === "EXISTS") {
