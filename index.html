@@ -44,6 +44,11 @@ async function main() {
       return;
     }
     
+    if (data.status === "ERROR") {
+      document.body.innerHTML += "<br>エラー：" + data.message;
+      return;
+    }
+    
     if (data.status === "NEW") {
       document.body.innerHTML += "<br>新規ユーザー<br>";
       const members = data.members;
