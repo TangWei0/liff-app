@@ -59,13 +59,13 @@ async function main() {
     }
     
     // ③ 未登録だけ送信
-    document.body.innerHTML += "<br>送信開始";
+    //document.body.innerHTML += "<br>送信開始";
     
-    await fetch(gasUrl, {
-      method: "POST",
-      mode: "no-cors",   // ←追加
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({ userId })});
+    //await fetch(gasUrl, {
+    //  method: "POST",
+    //  mode: "no-cors",   // ←追加
+    //  headers: { "Content-Type": "application/json"},
+    //  body: JSON.stringify({ userId })});
     
       document.body.innerHTML += "<br>送信完了";
   } catch (e) {
