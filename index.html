@@ -35,13 +35,22 @@ async function main() {
     const gasUrl = "https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec";
     // ① 事前チェック
     const checkRes = await fetch(gasUrl + "?userId=" + userId);
-    const status = await checkRes.text();
+    const data = await checkRes.json();   // ←変更
     document.body.innerHTML += "<br>チェック：" + status;
 
     // ② 分岐
-    if (status === "EXISTS") {
+    if (data.status === "EXISTS") {
       document.body.innerHTML += "<br>既に登録済み";
       return;
+    }
+    
+    if (data.status === "NEW") {
+      document.body.innerHTML += "<br>新規ユーザー<br>";
+      const members = data.members;
+      let html = "<h3>部員一覧</h3><ul>";
+      members.forEach(m => {html += `<li>${m[0]}</li>`;});
+      html += "</ul>";
+      document.body.innerHTML += html;
     }
     
     // ③ 未登録だけ送信
