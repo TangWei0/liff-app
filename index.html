@@ -91,10 +91,21 @@ body {
   color: white;
 }
 
+.btn-group {
+  display: flex;
+  gap: 10px;          /* ボタン間の余白 */
+  margin-top: 15px;
+}
+
+.btn-group .btn {
+  flex: 1;            /* 横に均等 */
+  margin-top: 0;      /* 上余白リセット */
+}
 /* ===== ボタン ===== */
 .btn {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
+  font-size: 16px;
   margin-top: 10px;
   border: none;
   border-radius: 8px;
@@ -107,7 +118,8 @@ body {
 }
 
 .btn-cancel {
-  background: #ccc;
+  background: #eee;
+  color: #333;
 }
   
 .btn-submit, .btn-cancel {
@@ -243,8 +255,10 @@ function showMemberModal(members) {
         ${girls.map(m => createCard(m)).join("")}
       </div>
 
-      <button class="btn btn-submit" onclick="submitMembers()">決定</button>
-      <button class="btn btn-cancel" onclick="closeModal()">キャンセル</button>
+      <div class="btn-group">
+        <button class="btn btn-submit" onclick="submitMembers()">決定</button>
+        <button class="btn btn-cancel" onclick="closeModal()">キャンセル</button>
+      </div>
     </div>
   </div>
   `;
@@ -272,7 +286,7 @@ function toggle(el) {
 
 /* 閉じる */
 function closeModal() {
-  document.getElementById("app").innerHTML = "";
+  liff.closeWindow(); // ← LINEに戻る
 }
   
 main();
