@@ -1,7 +1,104 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+/* ===== モーダル ===== */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* ===== タイトル ===== */
+.title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* ===== セクション ===== */
+.section {
+  margin-bottom: 15px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* 男子 */
+.boys .section-title {
+  background: #2e7d32;
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+/* 女子 */
+.girls .section-title {
+  background: #c62828;
+  color: white;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+/* ===== カード ===== */
+.card {
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card.selected {
+  background: #ff6b00;
+  color: white;
+}
+
+/* ===== ボタン ===== */
+.btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.btn-submit {
+  background: #ff6b00;
+  color: white;
+}
+
+.btn-cancel {
+  background: #ccc;
+}
+</style>
+</head>
 <body>
-<h2>登録中...</h2>
+<div id="app"></div>
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
@@ -76,29 +173,8 @@ function handleResponse(data) {
     log("新規ユーザー");
 
     const members = data.members;
-    let html = `<h3>部員選択（複数可）</h3><form id="memberForm">`;
-
-    members.forEach((m, i) => {
-      html += `
-        <div onclick="toggle(this)" class="card">
-        <input type="checkbox" value="${m[0]}" hidden>
-        ${m[0]}
-        </div>
-      `;
-    });
-
-    html += `
-      </form>
-      <button onclick="submitMembers()">決定</button>
-    `;
-    document.body.innerHTML = html;
+    showMemberModal(members);
   }
-}
-  
-function toggle(el) {
-  const checkbox = el.querySelector("input");
-  checkbox.checked = !checkbox.checked;
-  el.style.background = checkbox.checked ? "#ff6b00" : "#fff";
 }
   
 function submitMembers() {
@@ -128,7 +204,58 @@ function log(msg) {
   document.body.innerHTML += "<br>" + msg;
 }
 
+function showMemberModal(members) {
+  // 男女分け
+  const boys = members.filter(m => m.gender === "男");
+  const girls = members.filter(m => m.gender === "女");
 
+  let html = `
+  <div class="modal">
+    <div class="modal-content">
+      <div class="title">部員選択（複数可）</div>
+
+      <div class="section boys">
+        <div class="section-title">男子</div>
+        ${boys.map(m => createCard(m)).join("")}
+      </div>
+
+      <div class="section girls">
+        <div class="section-title">女子</div>
+        ${girls.map(m => createCard(m)).join("")}
+      </div>
+
+      <button class="btn btn-submit" onclick="submit()">決定</button>
+      <button class="btn btn-cancel" onclick="closeModal()">キャンセル</button>
+    </div>
+  </div>
+  `;
+
+  document.getElementById("app").innerHTML = html;
+}
+
+/* カード生成 */
+function createCard(m) {
+  return `
+    <div class="card" onclick="toggle(this)">
+      <span>${m.name}</span>
+      <span>${m.grade}</span>
+      <input type="checkbox" value="${m.name}" hidden>
+    </div>
+  `;
+}
+
+/* 選択トグル */
+function toggle(el) {
+  el.classList.toggle("selected");
+  const checkbox = el.querySelector("input");
+  checkbox.checked = !checkbox.checked;
+}
+
+/* 閉じる */
+function closeModal() {
+  document.getElementById("app").innerHTML = "";
+}
+  
 main();
 </script>
 </body>
