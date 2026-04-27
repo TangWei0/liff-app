@@ -5,58 +5,19 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
-async function main() {
+
+  // 定義　LIFFIDとGASのURL
+  const CONFIG = {
+    LIFF_ID: "2009873872-wrcf23zq",
+    GAS_URL: "https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec"
+  };
+
+  async function main() {
   try {
-    document.body.innerHTML += "開始";
-    await liff.init({ liffId: "2009873872-wrcf23zq" });
-    document.body.innerHTML += "初期化OK";
-    
-    if (!liff.isInClient()) {
-      document.body.innerHTML += "LINEから開いてください";
-      return;
-    }
-    
-    if (!liff.isLoggedIn()) {
-      document.body.innerHTML += "ログイン中...";
-      liff.login();
-      return;
-    }
-
-    const profile = await liff.getProfile();
-    const userId = profile.userId;
-
-    if (!userId) {
-      document.body.innerHTML += "<br>UserID取得失敗";
-      return;
-    }
-    
-    document.body.innerHTML += "UserID取得OK<br>" + userId;
-    
-    const gasUrl = "https://script.google.com/macros/s/AKfycbzHwwnfbGH6-QbnluId8uMWg1FpOaKX9jb__EhO7XIoNzaN4Kt41yYExP6QW68Pjxxu/exec";
-    // ① 事前チェック
-    const checkRes = await fetch(gasUrl + "?userId=" + userId, { method: "GET" });
-    const data = await checkRes.json();   // ←変更
-    document.body.innerHTML += "<br>チェック：" + JSON.stringify(data);
-
-    // ② 分岐
-    if (data.status === "EXISTS") {
-      document.body.innerHTML += "<br>既に登録済み";
-      return;
-    }
-    
-    if (data.status === "ERROR") {
-      document.body.innerHTML += "<br>エラー：" + data.message;
-      return;
-    }
-    
-    if (data.status === "NEW") {
-      document.body.innerHTML += "<br>新規ユーザー<br>";
-      const members = data.members;
-      let html = "<h3>部員一覧</h3><ul>";
-      members.forEach(m => {html += `<li>${m[0]}</li>`;});
-      html += "</ul>";
-      document.body.innerHTML += html;
-    }
+    await initLiff();
+    const userId = await getUserId();
+    const data = await checkUser(userId);
+    handleResponse(data);
     
     // ③ 未登録だけ送信
     //document.body.innerHTML += "<br>送信開始";
@@ -67,11 +28,75 @@ async function main() {
     //  headers: { "Content-Type": "application/json"},
     //  body: JSON.stringify({ userId })});
     
-      document.body.innerHTML += "<br>送信完了";
+    log("送信完了");
   } catch (e) {
-    document.body.innerHTML = "エラー<br>" + e.message;
+    showError(e);
   }
 }
+
+// LIFF初期化
+async function initLiff() {
+  await liff.init({ liffId: CONFIG.LIFF_ID });  
+  if (!liff.isInClient()) { throw new Error("LINEから開いてください"); }
+  if (!liff.isLoggedIn()) {
+    liff.login();
+    throw new Error("ログインリダイレクト");
+  }
+}
+
+//　ユーザID取得
+async function getUserId() {
+  const profile = await liff.getProfile();
+  const userId = profile.userId;
+  if (!userId) { throw new Error("UserID取得失敗"); }
+  return userId;
+}
+
+//　チェックユーザID（新規か既存か）  
+async function checkUser(userId) {
+  const res = await fetch(CONFIG.GAS_URL + "?userId=" + userId, { method: "GET" });
+  const data = await res.json();
+  log("チェック：" + JSON.stringify(data));
+  return data;
+}
+
+//　ユーザIDチェック　レスポンス処理
+function handleResponse(data) {
+  if (data.status === "EXISTS") {
+    log("既に登録済み");
+    return;
+  }
+
+  if (data.status === "ERROR") {
+    log("エラー：" + data.message);
+    return;
+  }
+
+  if (data.status === "NEW") {
+    log("新規ユーザー");
+
+    const members = data.members;
+    let html = "<h3>部員一覧</h3><ul>";
+
+    members.forEach(m => {
+      html += `<li>${m[0]}</li>`;
+    });
+
+    html += "</ul>";
+    document.body.innerHTML += html;
+  }
+}
+
+//　異常系処理
+function showError(e) {
+  console.error(e);
+  document.body.innerHTML = "エラー<br>" + e.message;
+}
+// テスト用　画面表示
+function log(msg) {
+  document.body.innerHTML += "<br>" + msg;
+}
+
 
 main();
 </script>
