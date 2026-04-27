@@ -26,12 +26,26 @@ body {
   max-width: 400px;
   border-radius: 12px;
   padding: 20px;
+
+  max-height: 80vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
 }
 
 /* ===== タイトル ===== */
 .title {
-  font-weight: bold;
-  margin-bottom: 10px;
+  position: sticky;
+  top: 0;
+  background: white;
+  padding-bottom: 5px;
+  z-index: 1;
 }
 
 /* ===== セクション ===== */
@@ -94,6 +108,11 @@ body {
 
 .btn-cancel {
   background: #ccc;
+}
+  
+.btn-submit, .btn-cancel {
+  position: sticky;
+  bottom: 0;
 }
 </style>
 </head>
