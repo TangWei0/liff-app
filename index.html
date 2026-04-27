@@ -172,7 +172,7 @@ function handleResponse(data) {
   if (data.status === "NEW") {
     log("新規ユーザー");
 
-    const members = data.members;
+    const members = data.members || [];
     showMemberModal(members);
   }
 }
