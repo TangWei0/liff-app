@@ -255,7 +255,7 @@ function showMemberModal(members) {
 }
 
 function submitMembers() {
-  const checked = document.querySelectorAll('input[name="member"]:checked');
+  const checked = document.querySelectorAll(".card input:checked");
   const selected = Array.from(checked).map(el => el.value);
   if (selected.length === 0) {
     alert("1人以上選択してください");
