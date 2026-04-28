@@ -204,6 +204,7 @@ function handleResponse(data) {
     log("新規ユーザー");
 
     const members = data.members || [];
+    window.members = members;
     showMemberModal(members);
   }
 }
@@ -284,6 +285,10 @@ async function confirmSubmit() {
 }
 
 function backToSelect() {
+  if (!window.members) {
+    alert("データがありません。URLを一度閉じてから、もう一度開いてください。");
+    return;
+  }
   showMemberModal(window.members);
 }
 
