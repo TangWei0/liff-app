@@ -1,4 +1,4 @@
-async function checkUser(userId) {
+ï»¿async function checkUser(userId) {
 	const res = await fetch(CONFIG.GAS_URL + "?userId=" + userId);
 	return await res.json();
 }
@@ -6,13 +6,13 @@ async function checkUser(userId) {
 async function confirmSubmit() {
     const selected = window.selectedMembers;
 
-    // GAS‚É‘—‚éê‡??
+    // GASã«é€ã‚‹å ´åˆğŸ‘‡
     /*
     fetch(CONFIG.GAS_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        userId: "‚±‚±‚ÉuserId",
+        userId: "ã“ã“ã«userId",
         members: selected
       })
     });

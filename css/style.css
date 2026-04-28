@@ -1,10 +1,10 @@
-body {
+ï»¿body {
     font-family: sans-serif;
     margin: 0;
     background: #f5f5f5;
 }
 
-/* ===== ƒ‚[ƒ_ƒ‹ ===== */
+/* ===== ãƒ¢ãƒ¼ãƒ€ãƒ« ===== */
 .modal {
     position: fixed;
     top: 0;
@@ -28,7 +28,7 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-    /* ƒXƒNƒ[ƒ‹ƒo[ */
+    /* ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ */
     .modal-content::-webkit-scrollbar {
         width: 6px;
     }
@@ -38,7 +38,7 @@ body {
         border-radius: 3px;
     }
 
-/* ===== ƒ^ƒCƒgƒ‹ ===== */
+/* ===== ã‚¿ã‚¤ãƒˆãƒ« ===== */
 .title {
     position: sticky;
     top: 0;
@@ -47,7 +47,7 @@ body {
     z-index: 1;
 }
 
-/* ===== ƒZƒNƒVƒ‡ƒ“ ===== */
+/* ===== ã‚»ã‚¯ã‚·ãƒ§ãƒ³ ===== */
 .section {
     margin-bottom: 15px;
 }
@@ -57,7 +57,7 @@ body {
     margin-bottom: 8px;
 }
 
-/* ’jq */
+/* ç”·å­ */
 .boys .section-title {
     background: #2e7d32;
     color: white;
@@ -65,7 +65,7 @@ body {
     border-radius: 6px;
 }
 
-/* —q */
+/* å¥³å­ */
 .girls .section-title {
     background: #c62828;
     color: white;
@@ -73,7 +73,7 @@ body {
     border-radius: 6px;
 }
 
-/* ===== ƒJ[ƒh ===== */
+/* ===== ã‚«ãƒ¼ãƒ‰ ===== */
 .card {
     padding: 10px;
     margin: 6px 0;
@@ -90,7 +90,7 @@ body {
         color: white;
     }
 
-/* ===== ƒ{ƒ^ƒ“ ===== */
+/* ===== ãƒœã‚¿ãƒ³ ===== */
 .btn {
     width: 100%;
     padding: 14px;
@@ -101,7 +101,7 @@ body {
     font-weight: bold;
 }
 
-/* ƒ{ƒ^ƒ“‰¡•À‚Ñ */
+/* ãƒœã‚¿ãƒ³æ¨ªä¸¦ã³ */
 .btn-group {
     display: flex;
     gap: 10px;
@@ -113,7 +113,7 @@ body {
         margin-top: 0;
     }
 
-/* F */
+/* è‰² */
 .btn-submit {
     background: #ff6b00;
     color: white;
@@ -124,7 +124,7 @@ body {
     color: #333;
 }
 
-/* ‰ºŒÅ’èiƒXƒ}ƒzUXj */
+/* ä¸‹å›ºå®šï¼ˆã‚¹ãƒãƒ›UXï¼‰ */
 .btn-submit,
 .btn-cancel {
     position: sticky;
