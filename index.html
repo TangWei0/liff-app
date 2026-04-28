@@ -207,24 +207,7 @@ function handleResponse(data) {
     showMemberModal(members);
   }
 }
-  
-function submitMembers() {
-  const checked = document.querySelectorAll('input[name="member"]:checked');
-  const selected = Array.from(checked).map(el => el.value);
-  log("選択：" + JSON.stringify(selected));
-  // GASに送る場合👇
-  /*
-  fetch(CONFIG.GAS_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      userId: "ここにuserId",
-      members: selected
-    })
-  });
-  */
-}
-  
+
 //　異常系処理
 function showError(e) {
   console.error(e);
@@ -243,7 +226,12 @@ function showMemberModal(members) {
   let html = `
   <div class="modal">
     <div class="modal-content">
-      <div class="title">部員選択（複数可）</div>
+      <div class="title">
+        初期登録<br>
+        <span style="font-size:14px; font-weight:normal;">
+          該当するお子様（複数可）を選択してください
+        </span>
+      </div>
 
       <div class="section boys">
         <div class="section-title">男子</div>
@@ -264,6 +252,39 @@ function showMemberModal(members) {
   `;
 
   document.getElementById("app").innerHTML = html;
+}
+
+function submitMembers() {
+  const checked = document.querySelectorAll('input[name="member"]:checked');
+  const selected = Array.from(checked).map(el => el.value);
+  if (selected.length === 0) {
+    alert("1人以上選択してください");
+    return;
+  }
+  // 一時保存
+  window.selectedMembers = selected;
+  // 確認画面へ
+  showConfirmModal(selected);
+}
+
+async function confirmSubmit() {
+  const selected = window.selectedMembers;
+
+  // GASに送る場合👇
+  /*
+  fetch(CONFIG.GAS_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: "ここにuserId",
+      members: selected
+    })
+  });
+  */
+}
+
+function backToSelect() {
+  showMemberModal(window.members);
 }
 
 /* カード生成 */
@@ -291,6 +312,28 @@ function closeLiff() {
   } else {
     window.location.href = "https://line.me"; // PC確認用
   }
+}
+
+function showConfirmModal(selected) {
+  let list = selected.map(n => `<li>${n}</li>`).join("");
+
+  let html = `
+  <div class="modal">
+    <div class="modal-content">
+      <div class="title">確認</div>
+
+      <div>以下の内容で登録しますか？</div>
+      <ul>${list}</ul>
+
+      <div class="btn-group">
+        <button class="btn btn-submit" onclick="confirmSubmit()">OK</button>
+        <button class="btn btn-cancel" onclick="backToSelect()">戻る</button>
+      </div>
+    </div>
+  </div>
+  `;
+
+  document.getElementById("app").innerHTML = html;
 }
   
 main();
