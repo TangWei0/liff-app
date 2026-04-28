@@ -257,7 +257,7 @@ function showMemberModal(members) {
 
       <div class="btn-group">
         <button class="btn btn-submit" onclick="submitMembers()">決定</button>
-        <button class="btn btn-cancel" onclick="closeModal()">キャンセル</button>
+        <button class="btn btn-cancel" onclick="closeLiff()">キャンセル</button>
       </div>
     </div>
   </div>
@@ -285,8 +285,12 @@ function toggle(el) {
 }
 
 /* 閉じる */
-function closeModal() {
-  liff.closeWindow(); // ← LINEに戻る
+function closeLiff() {
+  if (liff.isInClient()) {
+    liff.closeWindow();   // ← LINEに戻る（これが本質）
+  } else {
+    window.location.href = "https://line.me"; // PC確認用
+  }
 }
   
 main();
