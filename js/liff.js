@@ -8,7 +8,8 @@ async function initLiff() {
     }
 
     // 🔵 LINE内かどうかチェック（必要なら）
-    if (!liff.isInClient()) {
+    if (!liff.isLoggedIn()) {
+        liff.login();
         console.log("PCまたは外部ブラウザで実行中");
     }
 }
