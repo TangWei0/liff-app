@@ -1,9 +1,9 @@
 ﻿// LIFF初期化
 async function initLiff() {
     await liff.init({ liffId: CONFIG.LIFF_ID });
-    // 🔵 PCブラウザ対応（ここがポイント）
-    if (!liff.isLoggedIn()) {
-        liff.login(); // PCでもログイン画面出る
+    // 🔵 PC（外部ブラウザ） → ゲストモード
+    if (!liff.isInClient()) {
+        console.log("ゲストモードで実行");
         return;
     }
 
@@ -15,8 +15,9 @@ async function initLiff() {
 
 //　ユーザID取得
 async function getUserId() {
+    // 🔵 PCはダミーID
     if (!liff.isInClient()) {
-        return "DEBUG_USER_001"; // ← テスト用
+        return "GUEST_USER";
     }
     const profile = await liff.getProfile();
     return profile.userId;

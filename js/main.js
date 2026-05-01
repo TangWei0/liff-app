@@ -3,7 +3,9 @@
         await initLiff();
         const userId = await getUserId();
         const data = await checkUser(userId);
-
+        if (userId === "GUEST_USER") {
+            console.log("テスト用データ使用");
+        }
         handleResponse(data);
     } catch (e) {
         showError(e);
