@@ -97,8 +97,8 @@ function backToSelect() {
 
 function sortMembers(data) {
     return [...data].sort((a, b) => {
-        const roleA = getRoleRank(a[6]);
-        const roleB = getRoleRank(b[6]);
+        const roleA = getRoleRank(a[4]);
+        const roleB = getRoleRank(b[4]);
         if (roleA !== roleB) return roleA - roleB;
 
         const gradeA = getGradeRank(a[3]);
