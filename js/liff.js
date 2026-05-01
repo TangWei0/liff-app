@@ -1,19 +1,25 @@
 ﻿// LIFF初期化
 async function initLiff() {
     await liff.init({ liffId: CONFIG.LIFF_ID });
-    if (!liff.isInClient()) { throw new Error("LINEから開いてください"); }
+    // 🔵 PCブラウザ対応（ここがポイント）
     if (!liff.isLoggedIn()) {
-        liff.login();
-        throw new Error("ログインリダイレクト");
+        liff.login(); // PCでもログイン画面出る
+        return;
+    }
+
+    // 🔵 LINE内かどうかチェック（必要なら）
+    if (!liff.isInClient()) {
+        console.log("PCまたは外部ブラウザで実行中");
     }
 }
 
 //　ユーザID取得
 async function getUserId() {
+    if (!liff.isInClient()) {
+        return "DEBUG_USER_001"; // ← テスト用
+    }
     const profile = await liff.getProfile();
-    const userId = profile.userId;
-    if (!userId) { throw new Error("UserID取得失敗"); }
-    return userId;
+    return profile.userId;
 }
 
 /* 閉じる */
