@@ -1,7 +1,7 @@
 ﻿function showMemberModal(members) {
     // 男女分け
-    const boys = members.filter(m => m.gender === "男");
-    const girls = members.filter(m => m.gender === "女");
+    const boys = members.filter(m => m.gender === "男").sort((a, b) => b.grade - a.grade);
+    const girls = members.filter(m => m.gender === "女").sort((a, b) => b.grade - a.grade);
 
     let html = `
           <div class="modal">
