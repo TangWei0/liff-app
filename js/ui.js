@@ -1,7 +1,7 @@
 ﻿function showMemberModal(members) {
     // 男女分け
-    const boys = members.filter(m => m.gender === "男").sort((a, b) => b.grade - a.grade);
-    const girls = members.filter(m => m.gender === "女").sort((a, b) => b.grade - a.grade);
+    const boys = sortMembers(data.filter(m => m[2] === "男"));
+    const girls = sortMembers(data.filter(m => m[2] === "女"));
 
     let html = `
           <div class="modal">
@@ -93,4 +93,39 @@ function backToSelect() {
         return;
     }
     showMemberModal(window.members);
+}
+
+function sortMembers(data) {
+    return [...data].sort((a, b) => {
+        const roleA = getRoleRank(a[6]);
+        const roleB = getRoleRank(b[6]);
+        if (roleA !== roleB) return roleA - roleB;
+
+        const gradeA = getGradeRank(a[3]);
+        const gradeB = getGradeRank(b[3]);
+        if (gradeA !== gradeB) return gradeA - gradeB;
+
+        return Number(a[0]) - Number(b[0]);
+    });
+}
+
+function getRoleRank(post) {
+    post = post || "";
+    if (post === "キャプテン") return 1;
+    if (post === "副キャプテン") return 2;
+    if (post === "ゲームキャプテン") return 3;
+    return 4;
+}
+
+function getGradeRank(grade) {
+    const map = {
+        "6年生": 1,
+        "5年生": 2,
+        "4年生": 3,
+        "3年生": 4,
+        "2年生": 5,
+        "1年生": 6,
+        "年長": 7
+    };
+    return map[grade] || 99;
 }
