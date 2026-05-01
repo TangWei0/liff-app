@@ -98,15 +98,15 @@ function backToSelect() {
 
 function sortMembers(data) {
     return [...data].sort((a, b) => {
-        const roleA = getRoleRank(a[4]);
-        const roleB = getRoleRank(b[4]);
+        const roleA = getRoleRank(a.post);
+        const roleB = getRoleRank(b.post);
         if (roleA !== roleB) return roleA - roleB;
 
-        const gradeA = getGradeRank(a[3]);
-        const gradeB = getGradeRank(b[3]);
+        const gradeA = getGradeRank(a.grade);
+        const gradeB = getGradeRank(b.grade);
         if (gradeA !== gradeB) return gradeA - gradeB;
 
-        return Number(a[0]) - Number(b[0]);
+        return Number(a.id) - Number(b.id);
     });
 }
 
