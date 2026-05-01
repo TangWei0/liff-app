@@ -26,6 +26,26 @@
     max-height: 80vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* 高さ固定 */
+}
+
+/* 上固定 */
+.modal-header {
+    flex: 0 0 auto;
+}
+
+/* スクロール部分 */
+.modal-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* 下固定 */
+.modal-footer {
+    flex: 0 0 auto;
 }
 
     /* スクロールバー */

@@ -7,27 +7,36 @@
     let html = `
           <div class="modal">
             <div class="modal-content">
-              <div class="title">
-                初期登録<br>
-                <span style="font-size:14px; font-weight:normal;">
-                  該当するお子様（複数可）を選択してください
-                </span>
-              </div>
+                <!-- 固定エリア -->
+                <div class="modal-header">
+                    <div class="title">
+                        初期登録<br>
+                        <span style="font-size:14px;">
+                            該当するお子様（複数可）を選択してください
+                        </span>
+                    </div>
+                </div>
 
-              <div class="section boys">
-                <div class="section-title">男子</div>
-                ${boys.map(m => createCard(m)).join("")}
-              </div>
+                <!-- スクロールエリア -->
+                <div class="modal-body">
+                    <div class="section boys">
+                        <div class="section-title">男子</div>
+                        ${boys.map(m => createCard(m)).join("")}
+                    </div>
 
-              <div class="section girls">
-                <div class="section-title">女子</div>
-                ${girls.map(m => createCard(m)).join("")}
-              </div>
+                    <div class="section girls">
+                        <div class="section-title">女子</div>
+                        ${girls.map(m => createCard(m)).join("")}
+                    </div>
+                </div>
 
-              <div class="btn-group">
-                <button class="btn btn-submit" onclick="submitMembers()">決定</button>
-                <button class="btn btn-cancel" onclick="closeLiff()">キャンセル</button>
-              </div>
+                <!-- 固定ボタン -->
+                <div class="modal-footer">
+                    <div class="btn-group">
+                        <button class="btn btn-submit" onclick="submitMembers()">決定</button>
+                        <button class="btn btn-cancel" onclick="closeLiff()">キャンセル</button>
+                    </div>
+                </div>
             </div>
           </div>
           `;
