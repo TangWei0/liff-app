@@ -1,6 +1,6 @@
 ﻿let currentUserId = null;
-export function setUserId(userId) { currentUserId = userId; }
-export function getUserId() { return currentUserId; }
+function setUserId(userId) { currentUserId = userId; }
+function getUserId() { return currentUserId; }
 
 async function checkUser(userId) {
     currentUserId = userId; 
