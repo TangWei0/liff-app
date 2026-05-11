@@ -28,8 +28,11 @@ async function confirmSubmit() {
         });
 
         const result = await res.json();
-        console.log(result);
-        alert("送信成功");
+        if (result.status === "OK") {
+            alert("送信成功");
+        } else {
+            alert("エラー");
+        }
     } catch (err) {
         console.error(err);
         alert("送信失敗");
