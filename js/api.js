@@ -36,7 +36,6 @@ async function confirmSubmit() {
             alert("エラー");
         }
     } catch (err) {
-        console.error(err);
         alert("送信失敗");
     }
     
