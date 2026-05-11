@@ -9,18 +9,20 @@ async function checkUser(userId) {
 }
 
 async function confirmSubmit() {
+    const selected = window.selectedMembers;
+
+    if (!currentUserId) {
+        alert("userIdが未設定");
+        return;
+    }
+
     try {
-        const selected = window.selectedMembers;
-
-        if (!currentUserId) {
-            alert("userIdが未設定");
-            return;
-        }
-
         // GASに送る場合👇 
-        fetch(CONFIG.GAS_URL, {
+        const res = fetch(CONFIG.GAS_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
             body: JSON.stringify({
                 userId: currentUserId,
                 members: selected
