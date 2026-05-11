@@ -16,15 +16,14 @@ async function confirmSubmit() {
         return;
     }
 
-    // GASに送る場合👇
-    /*
+    // GASに送る場合👇 
     fetch(CONFIG.GAS_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        userId: "ここにuserId",
+        userId: currentUserId,
         members: selected
       })
     });
-    */
+    
 }
