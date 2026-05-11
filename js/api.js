@@ -18,7 +18,7 @@ async function confirmSubmit() {
 
     try {
         // GASに送る場合👇 
-        const res = fetch(CONFIG.GAS_URL, {
+        const res = await fetch(CONFIG.GAS_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "text/plain;charset=utf-8"
