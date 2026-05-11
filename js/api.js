@@ -9,21 +9,30 @@ async function checkUser(userId) {
 }
 
 async function confirmSubmit() {
-    const selected = window.selectedMembers;
+    try {
+        const selected = window.selectedMembers;
 
-    if (!currentUserId) {
-        alert("userIdが未設定");
-        return;
+        if (!currentUserId) {
+            alert("userIdが未設定");
+            return;
+        }
+
+        // GASに送る場合👇 
+        fetch(CONFIG.GAS_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                userId: currentUserId,
+                members: selected
+            })
+        });
+
+        const result = await res.json();
+        console.log(result);
+        alert("送信成功");
+    } catch (err) {
+        console.error(err);
+        alert("送信失敗");
     }
-
-    // GASに送る場合👇 
-    fetch(CONFIG.GAS_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        userId: currentUserId,
-        members: selected
-      })
-    });
     
 }
