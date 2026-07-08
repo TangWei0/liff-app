@@ -12,7 +12,7 @@
                     <div class="title">
                         初期登録<br>
                         <span style="font-size:14px;">
-                            該当するお子様（複数可）を選択してください
+                            該当するお子様（複数可能）を選択してください
                         </span>
                     </div>
                 </div>
