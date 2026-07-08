@@ -107,6 +107,7 @@ function backToSelect() {
         alert("データがありません。URLを一度閉じてから、もう一度開いてください。");
         return;
     }
+
     showMemberModal(window.members);
 }
 
