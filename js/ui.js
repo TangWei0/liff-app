@@ -45,7 +45,7 @@
 }
 
 function showConfirmModal(selected) {
-    let list = selected.map(n => `<li>${n}</li>`).join("");
+    let list = selected.map(n => `<li>${n.name}</li>`).join("");
 
     let html = `
           <div class="modal">
