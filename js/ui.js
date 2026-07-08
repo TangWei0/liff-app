@@ -68,7 +68,12 @@ function showConfirmModal(selected) {
 
 function submitMembers() {
     const checked = document.querySelectorAll(".card input:checked");
-    const selected = Array.from(checked).map(el => el.value);
+    const selected = Array.from(checked).map(el => ({
+        id: el.dataset.id,
+        name: el.dataset.name,
+        grade: el.dataset.grade,
+        gender: el.dataset.gender
+    }));
     if (selected.length === 0) {
         alert("1人以上選択してください");
         return;
