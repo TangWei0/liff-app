@@ -44,8 +44,14 @@
     document.getElementById("app").innerHTML = html;
 }
 
-function showConfirmModal(selected) {
-    let list = selected.map(n => `<li>${n.name}</li>`).join("");
+function showConfirmModal(selectedIds) {
+    const list = selectedIds
+        .map(id => {
+            const member = window.members.find(m => String(m.id) === String(id));
+            return `<li>${member ? member.name : id}</li>`;
+        })
+        .join("");
+
 
     let html = `
           <div class="modal">
@@ -68,12 +74,7 @@ function showConfirmModal(selected) {
 
 function submitMembers() {
     const checked = document.querySelectorAll(".card input:checked");
-    const selected = Array.from(checked).map(el => ({
-        id: el.dataset.id,
-        name: el.dataset.name,
-        grade: el.dataset.grade,
-        gender: el.dataset.gender
-    }));
+    const selected = Array.from(checked).map(el => el.dataset.id);
     if (selected.length === 0) {
         alert("1人以上選択してください");
         return;
@@ -93,10 +94,7 @@ function createCard(m) {
               <input
                 type="checkbox"
                 hidden
-                data-id="${m.id}"
-                data-name="${m.name}"
-                data-grade="${m.grade}"
-                data-gender="${m.gender}">
+                data-id="${m.id}">
             </div>
           `;
 }
