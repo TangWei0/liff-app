@@ -90,7 +90,13 @@ function createCard(m) {
             <div class="card" onclick="toggle(this)">
               <span>${m.name}</span>
               <span>${m.grade}</span>
-              <input type="checkbox" value="${m.name}" hidden>
+              <input
+                type="checkbox"
+                hidden
+                data-id="${m.id}"
+                data-name="${m.name}"
+                data-grade="${m.grade}"
+                data-gender="${m.gender}">
             </div>
           `;
 }
