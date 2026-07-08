@@ -30,6 +30,8 @@ function handleResponse(data) {
         const members = data.members || [];
         window.members = members;
         showMemberModal(members);
+
+        log(members);
     }
 }
 
