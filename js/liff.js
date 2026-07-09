@@ -18,7 +18,8 @@ async function initLiff() {
 async function getUserId() {
     // 🔵 PCはダミーID
     if (!liff.isInClient()) {
-        return "GUEST_USER";
+        return "Ud6f3649ea2d5cdd47180a67a4b218f89";
+        //return "GUEST_USER";
     }
     const profile = await liff.getProfile();
     return profile.userId;
