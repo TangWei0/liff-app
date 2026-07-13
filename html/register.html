@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body>
+    <div class="card">
+        <h2>部員登録</h2>
+        <p>お子様のお名前を入力してください。</p>
+        <input id="memberName"
+               type="text"
+               maxlength="20"
+               placeholder="例：上田智博">
+
+        <div class="notice">
+            入力ルール<br>
+            ・姓と名の間にスペースを入れない<br>
+            ・基本は漢字で入力してください。<br>
+            ・漢字がない場合はひらがなで入力してください。<br>
+            <br>
+            例：上田智博
+        </div>
+
+        <button onclick="register()">
+            登録
+        </button>
+    </div>
+</body>
+</html>

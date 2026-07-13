@@ -1,0 +1,30 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.btn-submit {
+    background: #ff6b00;
+    color: white;
+}
+
+.btn-cancel {
+    background: #eee;
+    color: #333;
+}

@@ -1,0 +1,29 @@
+.container {
+    max-width: 420px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.notice {
+    background: #fff8e1;
+    border: 1px solid #ffd54f;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
