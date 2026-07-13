@@ -35,7 +35,7 @@ function handleResponse(data) {
         sessionStorage.setItem("userId", window.userId);
 
         // 登録画面へ
-        location.href = "register.html";
+        location.href = "html/register.html";
     }
 }
 
