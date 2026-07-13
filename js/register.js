@@ -9,18 +9,18 @@ function addMember() {
         "beforeend",
         `
         <div class="member-row">
-            <label>${toCircle(count)} ‚¨q—l</label>
+            <label>${toCircle(count)} ãŠå­æ§˜</label>
             <input class="memberName"
                    type="text"
                    maxlength="20"
-                   placeholder="—áFã“c’q”">
+                   placeholder="ä¾‹ï¼šä¸Šç”°æ™ºåš">
         </div>
         `
     );
 }
 
 function toCircle(no) {
-    const list = [ "‡@", "‡A", "‡B", "‡C", "‡D", "‡E", "‡F", "‡G", "‡H", "‡I" ];
+    const list = [ "â‘ ", "â‘¡", "â‘¢", "â‘£", "â‘¤", "â‘¥", "â‘¦", "â‘§", "â‘¨", "â‘©" ];
     return list[no - 1] || no;
 }
 
@@ -38,5 +38,5 @@ function register() {
 
     console.log(names);
 
-    // Ÿ‚ÉGAS‚Ö‘—M
+    // æ¬¡ã«GASã¸é€ä¿¡
 }
