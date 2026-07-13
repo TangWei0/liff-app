@@ -27,3 +27,40 @@ input[type=text] {
     border: 1px solid #ccc;
     border-radius: 8px;
 }
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn-group button {
+    flex: 1;
+    height: 52px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+}
+
+.btn-submit {
+    background: #ff6b00;
+    color: white;
+}
+
+.btn-cancel {
+    background: #9e9e9e;
+    color: white;
+}
+
+#btnAdd {
+    width: 100%;
+    padding: 14px;
+    margin-top: 20px;
+    background: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: bold;
+}

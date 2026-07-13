@@ -1,6 +1,11 @@
 let count = 1;
 
-document.getElementById("btnAdd").addEventListener("click", addMember);
+// この画面　イベント
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("btnAdd").addEventListener("click", addMember);
+    document.getElementById("btnRegister").addEventListener("click", register);
+    document.getElementById("btnCancel").addEventListener("click", cancel);
+});
 
 function addMember() {
     count++;
@@ -24,19 +29,20 @@ function toCircle(no) {
     return list[no - 1] || no;
 }
 
-document.getElementById("btnRegister").addEventListener("click", register);
-
 function register() {
     const names = [];
     document.querySelectorAll(".memberName").forEach(e =>
     {
         const name = e.value.trim();
-        if (name != "") {
+        if (name != "" && !names.includes(name)) {
             names.push(name);
         }
     });
 
     console.log(names);
-
     // 次にGASへ送信
+}
+
+function cancel() {
+    closeLiff();
 }
