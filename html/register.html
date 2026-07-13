@@ -19,7 +19,8 @@
                placeholder="入力例：上田智博">
 
         <div class="notice">
-            入力ルール<br>
+            <b>入力ルール</b><br><br>
+
             ・姓と名の間にスペースを入れない<br>
             ・基本は漢字で入力してください。<br>
             ・漢字がない場合はひらがなで入力してください。<br>
@@ -27,6 +28,19 @@
             例：上田智博
         </div>
 
+        <div id="memberArea">
+            <div class="member-row">
+                <label>① お子様</label>
+                <input class="memberName"
+                       type="text"
+                       maxlength="20"
+                       placeholder="例：上田智博">
+            </div>
+        </div>
+
+        <button id="btnAdd" class="btn btn-cancel">
+            ＋ お子様を追加
+        </button>
         <button onclick="register()">
             登録
         </button>
