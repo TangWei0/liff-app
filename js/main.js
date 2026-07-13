@@ -32,10 +32,10 @@ function handleResponse(data) {
         //showMemberModal(members);
 
         // UserIDを保存
-        sessionStorage.setItem("userId", window.userId);
+        //sessionStorage.setItem("userId", window.userId);
 
         // 登録画面へ
-        location.href = "html/register.html";
+        //location.href = "html/register.html";
     }
 }
 
