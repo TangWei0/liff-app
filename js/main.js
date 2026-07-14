@@ -27,10 +27,6 @@ function handleResponse(data) {
     if (data.status === "NEW") {
         log("新規ユーザー");
 
-        //const members = data.members || [];
-        //window.members = members;
-        //showMemberModal(members);
-
         // UserIDを保存
         sessionStorage.setItem("userId", window.userId);
 

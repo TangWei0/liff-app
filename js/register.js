@@ -40,9 +40,20 @@ function register() {
     });
 
     console.log(names);
-    // 次にGASへ送信
+    // GASに送る場合👇 
+    const res = await fetch(CONFIG.GAS_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+            userId: currentUserId,
+            names: names
+        })
+    });
 }
 
 function cancel() {
+    alert();
     closeLiff();
 }

@@ -4,7 +4,7 @@ function getUserId() { return currentUserId; }
 
 async function checkUser(userId) {
     currentUserId = userId; 
-	const res = await fetch(CONFIG.GAS_URL + "?userId=" + userId);
+    const res = await fetch(CONFIG.GAS_URL + "?action=checkUser" + "?userId=" + userId);
 	return await res.json();
 }
 

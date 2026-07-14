@@ -27,12 +27,9 @@ async function getUserId() {
 
 /* 閉じる */
 function closeLiff() {
-    alert("isInClient = " + liff.isInClient());
     if (liff.isInClient()) {
-        alert("closeWindow実行");
         liff.closeWindow();   // ← LINEに戻る（これが本質）
     } else {
-        alert("ブラウザ");
         window.location.href = "https://line.me"; // PC確認用
     }
 }
