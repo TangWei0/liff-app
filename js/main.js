@@ -1,7 +1,7 @@
 ﻿function main() {
     try {
-        await initLiff();
-        const userId = await getUserId();
+        initLiff();
+        const userId = getUserId();
         checkUser(userId);
     } catch (e) {
         showError(e);
