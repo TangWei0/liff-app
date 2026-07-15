@@ -1,4 +1,4 @@
-﻿async function main() {
+﻿function main() {
     try {
         await initLiff();
         const userId = await getUserId();
