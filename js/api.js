@@ -13,4 +13,6 @@ async function Do(Json) {
     if (data.status === "ERROR") {
         throw new Error(data.message || "GAS Error");
     }
+
+    return data;
 }

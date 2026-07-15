@@ -1,8 +1,8 @@
-﻿function main() {
+﻿async function main() {
     try {
         initLiff();
-        const userId = getUserId();
-        checkUser(userId);
+        const userId = await getUserId();
+        await checkUser(userId);
     } catch (e) {
         showError(e);
     }

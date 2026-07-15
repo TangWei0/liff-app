@@ -1,6 +1,6 @@
 ﻿// LIFF初期化
-function initLiff() {
-    liff.init({ liffId: CONFIG.LIFF_ID });
+async function initLiff() {
+    await liff.init({ liffId: CONFIG.LIFF_ID });
     // 🔵 PC（外部ブラウザ） → ゲストモード
     if (!liff.isInClient()) {
         console.log("ゲストモードで実行");
@@ -15,13 +15,13 @@ function initLiff() {
 }
 
 //　ユーザID取得
-function getUserId() {
+async function getUserId() {
     // 🔵 PCはダミーID
     if (!liff.isInClient()) {
         return "Ud6f3649ea2d5cdd47180a67a4b218f89";
         //return "GUEST_USER";
     }
-    const profile = liff.getProfile();
+    const profile = await liff.getProfile();
     return profile.userId;
 }
 

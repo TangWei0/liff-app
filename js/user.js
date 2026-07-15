@@ -1,4 +1,4 @@
-﻿function checkUser(userId) {
+﻿async function checkUser(userId) {
     try
     {
         const data = await Do({ action: "checkUser", userId: userId });
