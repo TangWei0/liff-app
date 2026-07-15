@@ -2,36 +2,9 @@
     try {
         await initLiff();
         const userId = await getUserId();
-        const data = await checkUser(userId);
-        if (userId === "GUEST_USER") {
-            console.log("テスト用データ使用");
-        }
-        handleResponse(data);
+        checkUser(userId);
     } catch (e) {
         showError(e);
-    }
-}
-
-//　ユーザIDチェック　レスポンス処理
-function handleResponse(data) {
-    if (data.status === "EXISTS") {
-        log("既に登録済み");
-        return;
-    }
-
-    if (data.status === "ERROR") {
-        log("エラー：" + data.message);
-        return;
-    }
-
-    if (data.status === "NEW") {
-        log("新規ユーザー");
-
-        // UserIDを保存
-        sessionStorage.setItem("userId", window.userId);
-
-        // 登録画面へ
-        location.href = "html/register.html";
     }
 }
 

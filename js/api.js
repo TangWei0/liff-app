@@ -1,42 +1,16 @@
-﻿let currentUserId = null;
-function setUserId(userId) { currentUserId = userId; }
-function getUserId() { return currentUserId; }
+﻿// GASに送信API
+async function Do(Json) {
+    // GASに送る場合
+    const res = await fetch(CONFIG.GAS_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(Json)
+    });
 
-async function checkUser(userId) {
-    currentUserId = userId; 
-    const res = await fetch(CONFIG.GAS_URL + "?action=checkUser" + "&userId=" + userId);
-	return await res.json();
-}
-
-async function confirmSubmit() {
-    const selected = window.selectedMembers;
-
-    if (!currentUserId) {
-        alert("userIdが未設定");
-        return;
+    const data = await res.json();
+    if (data.status === "ERROR") {
+        throw new Error(data.message || "GAS Error");
     }
-
-    try {
-        // GASに送る場合👇 
-        const res = await fetch(CONFIG.GAS_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: JSON.stringify({
-                userId: currentUserId,
-                members: selected
-            })
-        });
-
-        const result = await res.json();
-        if (result.status === "OK") {
-            alert("送信成功");
-        } else {
-            alert("エラー");
-        }
-    } catch (err) {
-        alert("送信失敗");
-    }
-    
 }
