@@ -43,7 +43,7 @@ async function register() {
 
         console.log(names);
 
-        const userId = getUserId();
+        const userId = getcurrentUserId();
         console.log(userId);
 
         const data = await Do({ action: "registerUser", userId: userId, names: names });

@@ -1,4 +1,5 @@
 ﻿async function main() {
+    console.log("main.js loaded");
     try {
         await initLiff();
         const userId = await getUserId();
