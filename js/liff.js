@@ -1,4 +1,7 @@
-﻿// LIFF初期化
+﻿let currentUserId = null;
+function setUserId(userId) { currentUserId = userId; }
+
+// LIFF初期化
 async function initLiff() {
     await liff.init({ liffId: CONFIG.LIFF_ID });
     // 🔵 PC（外部ブラウザ） → ゲストモード

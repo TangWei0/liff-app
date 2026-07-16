@@ -1,4 +1,5 @@
-﻿async function checkUser(userId) {
+﻿
+async function checkUser(userId) {
     try
     {
         const data = await Do({ action: "checkUser", userId: userId });
@@ -12,7 +13,7 @@
             log("新規ユーザー");
 
             // UserIDを保存
-            sessionStorage.setItem("userId", window.userId);
+            setUserId(userId);
 
             // 登録画面へ
             location.href = "html/register.html";
