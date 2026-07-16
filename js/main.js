@@ -1,6 +1,6 @@
 ﻿async function main() {
     try {
-        initLiff();
+        await initLiff();
         const userId = await getUserId();
         await checkUser(userId);
     } catch (e) {
