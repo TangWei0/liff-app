@@ -14,7 +14,7 @@ function getcurrentUserId() {
 async function initLiff() {
     console.log("liff.js loaded");
 
-    await liff.init({ liffId: "2009873872-wrcf23zq" /*CONFIG.LIFF_ID*/ });
+    await liff.init({ liffId: CONFIG.LIFF_ID });
     // 🔵 PC（外部ブラウザ） → ゲストモード
     if (!liff.isInClient()) {
         console.log("ゲストモードで実行");
