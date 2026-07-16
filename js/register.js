@@ -40,17 +40,7 @@ function register() {
     });
 
     console.log(names);
-    // GASに送る場合👇 
-    const res = await fetch(CONFIG.GAS_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify({
-            userId: currentUserId,
-            names: names
-        })
-    });
+    const data = await Do({ action: "registerUser", userId: userId, names: names });
 }
 
 function cancel() {
