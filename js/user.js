@@ -16,7 +16,7 @@ async function checkUser(userId) {
             setUserId(userId);
 
             // 登録画面へ
-            //location.href = "html/register.html";
+            location.href = "html/register.html";
         }
     }
     catch (e)
