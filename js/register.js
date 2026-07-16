@@ -42,7 +42,7 @@ async function register() {
         });
 
         console.log(names);
-        const data = await Do({ action: "registerUser", userId: userId, names: names });
+        const data = await Do({ action: "registerUser", userId: currentUserId, names: names });
     }
     catch (e)
     {
