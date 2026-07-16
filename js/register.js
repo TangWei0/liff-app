@@ -29,18 +29,25 @@ function toCircle(no) {
     return list[no - 1] || no;
 }
 
-function register() {
-    const names = [];
-    document.querySelectorAll(".memberName").forEach(e =>
+async function register() {
+    try
     {
-        const name = e.value.trim();
-        if (name != "" && !names.includes(name)) {
-            names.push(name);
-        }
-    });
+        const names = [];
+        document.querySelectorAll(".memberName").forEach(e =>
+        {
+            const name = e.value.trim();
+            if (name != "" && !names.includes(name)) {
+                names.push(name);
+            }
+        });
 
-    console.log(names);
-    const data = await Do({ action: "registerUser", userId: userId, names: names });
+        console.log(names);
+        const data = await Do({ action: "registerUser", userId: userId, names: names });
+    }
+    catch (e)
+    {
+        alert(e.message);
+    }
 }
 
 function cancel() {
