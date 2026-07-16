@@ -12,6 +12,8 @@ function getcurrentUserId() {
 
 // LIFF初期化
 async function initLiff() {
+    console.log("liff.js loaded");
+
     await liff.init({ liffId: "2009873872-wrcf23zq" /*CONFIG.LIFF_ID*/ });
     // 🔵 PC（外部ブラウザ） → ゲストモード
     if (!liff.isInClient()) {
