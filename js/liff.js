@@ -1,5 +1,14 @@
 ﻿let currentUserId = null;
-function setUserId(userId) { currentUserId = userId; }
+function setUserId(userId) {
+    currentUserId = userId;
+    sessionStorage.setItem("userId", userId);
+}
+function getcurrentUserId() {
+    if (!currentUserId) {
+        currentUserId = sessionStorage.getItem("userId");
+    }
+    return currentUserId;
+}
 
 // LIFF初期化
 async function initLiff() {
