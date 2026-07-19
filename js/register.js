@@ -47,6 +47,18 @@ async function register() {
         console.log(userId);
 
         const data = await Do({ action: "registerUser", userId: userId, names: names });
+
+        switch (data.status) {
+            case "OK":
+                alert("登録しました。");
+                break;
+            case "NOT_FOUND":
+                alert("次の部員は存在しません。\n\n" + data.message);
+                break;
+            default:
+                alert(data.message);
+                break;
+        }
     }
     catch (e)
     {
