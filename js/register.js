@@ -59,7 +59,13 @@ async function register() {
                 //    "・部員登録が未完了の可能性があります\n\n" +
                 //    "解決しない場合は代表者へご連絡ください。"
                 //);
-                showAlert("部員確認", "部員リストで確認できませんでした。");
+                showAlert(
+                    "部員確認",
+                    "部員リストで確認できませんでした。\n\n" +
+                    "・お名前をご確認ください\n" +
+                    "・部員登録が未完了の可能性があります\n\n" +
+                    "解決しない場合は代表者へご連絡ください。"
+                );
                 break;
             default:
                 alert(data.message);
@@ -70,6 +76,16 @@ async function register() {
     {
         alert(e.message);
     }
+}
+
+function showAlert(title, message) {
+    document.getElementById("alertTitle").textContent = title;
+    document.getElementById("alertMessage").textContent = message;
+    document.getElementById("alertModal").style.display = "flex";
+}
+
+function closeAlert() {
+    document.getElementById("alertModal").style.display = "none";
 }
 
 function cancel() {
