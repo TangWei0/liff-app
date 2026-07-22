@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/register.css">
 </head>
 
@@ -43,6 +44,14 @@
             <button id="btnCancel" class="btn btn-cancel">
                 キャンセル
             </button>
+        </div>
+    </div>
+
+    <div id="alertModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h3 id="alertTitle">お知らせ</h3>
+            <p id="alertMessage"></p>
+            <button onclick="closeAlert()">OK</button>
         </div>
     </div>
 

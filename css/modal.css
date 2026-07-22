@@ -1,0 +1,27 @@
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 320px;
+    text-align: center;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 30px;
+    background: #06C755; /* LINEÉOÉäÅ[Éì */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
