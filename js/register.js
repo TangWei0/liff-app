@@ -50,10 +50,17 @@ async function register() {
 
         switch (data.status) {
             case "OK":
-                alert("登録しました。");
+                // TODO メイン画面戻る
                 break;
             case "NOT_FOUND":
-                alert("次の部員は存在しません。\n\n" + data.message);
+                alert(
+                    "入力されたお子さまのお名前が部員リストで確認できませんでした。\n\n" +
+                    "考えられる原因：\n" +
+                    "① お名前の入力（漢字・ひらがな・スペースなど）が部員登録と一致していない。\n" +
+                    "② まだ部員リストへの登録が完了していない。\n\n" +
+                    "お名前をご確認のうえ、解決しない場合は代表者までお問い合わせください。\n\n" +
+                    "対象者：\n" + data.message
+                );
                 break;
             default:
                 alert(data.message);
