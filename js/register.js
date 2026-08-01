@@ -14,7 +14,7 @@ function addMember() {
         "beforeend",
         `
         <div class="member-row">
-            <label>${toCircle(count)} お子様</label>
+            <label>${toCircle(count)} 登録するお子様</label>
             <input class="memberName"
                    type="text"
                    maxlength="20"
@@ -53,16 +53,19 @@ async function register() {
                 // TODO メイン画面戻る
                 break;
             case "NOT_FOUND":
-                showAlert(
-                    "部員確認",
+                showAlert("部員確認",
                     "次のお子様は部員リストで確認できませんでした。\n\n" +
                     "【確認できなかったお子様】\n" +
                     data.notFoundList.join("\n") +
                     "\n\n・お名前をご確認ください\n" +
                     "・時間をおいてもう一度お試しください\n\n" +
                     "再度同じエラーが発生する場合は、\n" +
-                    "代表者へご連絡ください。"
-                );
+                    "代表者へご連絡ください。");
+                if (names.length > data.notFoundList.count) {
+                    // TODO メイン画面戻る
+                } else {
+                    cancel();
+                }
                 break;
             default:
                 alert(data.message);
