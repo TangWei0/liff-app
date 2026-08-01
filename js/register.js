@@ -83,7 +83,7 @@ async function register() {
     }
 }
 
-function showAlert(title, message) {
+function showAlert(title, message, callback = null) {
     document.getElementById("alertTitle").textContent = title;
     document.getElementById("alertMessage").textContent = message;
     document.getElementById("alertModal").style.display = "flex";
