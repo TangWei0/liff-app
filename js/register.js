@@ -1,4 +1,5 @@
 let count = 1;
+let alertCallback = null;
 
 // この画面　イベント
 document.addEventListener("DOMContentLoaded", () => {
@@ -85,19 +86,20 @@ async function register() {
 function showAlert(title, message) {
     document.getElementById("alertTitle").textContent = title;
     document.getElementById("alertMessage").textContent = message;
+    document.getElementById("alertModal").style.display = "flex";
 
-    const modal = document.getElementById("alertModal");
-    const okBtn = document.getElementById("alertOk"); // OKボタンのID
-    modal.style.display = "flex";
+    alertCallback = callback;
+}
 
-    // 前回のイベントを削除
-    okBtn.onclick = () => {
-        modal.style.display = "none";
+function closeAlert() {
 
-        if (callback) {
-            callback();
-        }
-    };
+    document.getElementById("alertModal").style.display = "none";
+
+    if (alertCallback) {
+        const cb = alertCallback;
+        alertCallback = null;
+        cb();
+    }
 }
 
 function cancel() {
