@@ -53,18 +53,22 @@ async function register() {
                 // TODO メイン画面戻る
                 break;
             case "NOT_FOUND":
-                showAlert("部員確認",
+                const message = 
                     "次のお子様は部員リストで確認できませんでした。\n\n" +
                     "【確認できなかったお子様】\n" +
                     data.notFoundList.join("\n") +
                     "\n\n・お名前をご確認ください\n" +
                     "・時間をおいてもう一度お試しください\n\n" +
                     "再度同じエラーが発生する場合は、\n" +
-                    "代表者へご連絡ください。");
-                if (names.length > data.notFoundList.count) {
-                    // TODO メイン画面戻る
+                    "代表者へご連絡ください。";
+
+                if (names.length > data.notFoundList.length) {
+                    // 一部だけ見つからなかった
+                    showAlert("部員確認", message);
+                    // TODO メイン画面へ戻る
                 } else {
-                    cancel();
+                    // 全員見つからなかった
+                    showAlert("部員確認", message, cancel);
                 }
                 break;
             default:
@@ -81,14 +85,21 @@ async function register() {
 function showAlert(title, message) {
     document.getElementById("alertTitle").textContent = title;
     document.getElementById("alertMessage").textContent = message;
-    document.getElementById("alertModal").style.display = "flex";
-}
 
-function closeAlert() {
-    document.getElementById("alertModal").style.display = "none";
+    const modal = document.getElementById("alertModal");
+    const okBtn = document.getElementById("alertOk"); // OKボタンのID
+    modal.style.display = "flex";
+
+    // 前回のイベントを削除
+    okBtn.onclick = () => {
+        modal.style.display = "none";
+
+        if (callback) {
+            callback();
+        }
+    };
 }
 
 function cancel() {
-    alert();
     closeLiff();
 }
