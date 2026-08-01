@@ -66,9 +66,9 @@ async function register() {
 
                 if (names.length > data.notFoundList.length) {
                     // 一部だけ見つからなかった
-                    showAlert("部員確認", message);
-                    // メイン画面へ戻る
-                    location.href = "../index.html";
+                    showAlert("部員確認", message,
+                        () => { location.href = "../index.html"; }
+                    );
                 } else {
                     // 全員見つからなかった
                     showAlert("部員確認", message, cancel);
