@@ -1,7 +1,7 @@
 ﻿async function main() {
-    console.log("main.js loaded");
     try {
-        let userId = getcurrentUserId();
+        const userId = await getcurrentUserId();
+        console.log("userId:", userId);
         await checkUser(userId);
     } catch (e) {
         showError(e);

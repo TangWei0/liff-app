@@ -1,4 +1,28 @@
-﻿
+﻿let currentUserId = null;
+function setUserId(userId) {
+    currentUserId = userId;
+    sessionStorage.setItem("userId", userId);
+}
+
+async function getcurrentUserId() {
+    // メモリ上に存在
+    if (currentUserId) {
+        return currentUserId;
+    }
+
+    // sessionStorage確認
+    currentUserId = sessionStorage.getItem("userId");
+
+    // 初回のみLIFFから取得
+    if (!currentUserId) {
+        await initLiff();
+        currentUserId = await getUserId();
+        sessionStorage.setItem("userId", currentUserId);
+    }
+
+    return currentUserId;
+}
+
 async function checkUser(userId) {
     try
     {

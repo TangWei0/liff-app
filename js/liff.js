@@ -1,25 +1,4 @@
-﻿let currentUserId = null;
-function setUserId(userId) {
-    currentUserId = userId;
-    sessionStorage.setItem("userId", userId);
-}
-function getcurrentUserId() {
-    if (currentUserId) {
-        return currentUserId;
-    }
-
-    currentUserId = sessionStorage.getItem("userId");
-
-    if (!currentUserId) {
-        await initLiff();
-        currentUserId = await getUserId();
-        sessionStorage.setItem("userId", currentUserId);
-    }
-
-    return currentUserId;
-}
-
-// LIFF初期化
+﻿// LIFF初期化
 async function initLiff() {
     console.log("liff.js loaded");
 
