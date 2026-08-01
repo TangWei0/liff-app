@@ -1,8 +1,7 @@
 ﻿async function main() {
     console.log("main.js loaded");
     try {
-        await initLiff();
-        const userId = await getUserId();
+        let userId = getcurrentUserId();
         await checkUser(userId);
     } catch (e) {
         showError(e);

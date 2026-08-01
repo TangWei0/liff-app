@@ -51,7 +51,8 @@ async function register() {
 
         switch (data.status) {
             case "OK":
-                // TODO メイン画面戻る
+                // メイン画面へ戻る
+                location.href = "../index.html";
                 break;
             case "NOT_FOUND":
                 const message = 
@@ -66,7 +67,8 @@ async function register() {
                 if (names.length > data.notFoundList.length) {
                     // 一部だけ見つからなかった
                     showAlert("部員確認", message);
-                    // TODO メイン画面へ戻る
+                    // メイン画面へ戻る
+                    location.href = "../index.html";
                 } else {
                     // 全員見つからなかった
                     showAlert("部員確認", message, cancel);

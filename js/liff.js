@@ -4,9 +4,18 @@ function setUserId(userId) {
     sessionStorage.setItem("userId", userId);
 }
 function getcurrentUserId() {
-    if (!currentUserId) {
-        currentUserId = sessionStorage.getItem("userId");
+    if (currentUserId) {
+        return currentUserId;
     }
+
+    currentUserId = sessionStorage.getItem("userId");
+
+    if (!currentUserId) {
+        await initLiff();
+        currentUserId = await getUserId();
+        sessionStorage.setItem("userId", currentUserId);
+    }
+
     return currentUserId;
 }
 
